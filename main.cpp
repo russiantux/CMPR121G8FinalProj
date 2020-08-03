@@ -24,6 +24,7 @@ Basic rundown of PDCurses commands:
 
 
 #include <iostream>
+#include "common_vars.h"
 //the pdcurses header
 #include <curses.h>
 
@@ -90,7 +91,7 @@ void c_printLogo(WINDOW* menu) {
 
 //a function to draw the login screen
 void c_loginScreen(WINDOW* win) {
-    char usr[50],pass[50];
+    char usr[MAX_SIZE],pass[MAX_SIZE];
     char* meme;
     meme[1] = '1';
     sizeof(meme);
