@@ -1,4 +1,6 @@
-﻿  main.cpp
-C:\Users\Russi\Desktop\College Stuff\cmpr121\Group8_FinalProj\main.cpp(103,27): error C2664: 'char *strcat(char *,const char *)': cannot convert argument 2 from 'char' to 'const char *'
-C:\Users\Russi\Desktop\College Stuff\cmpr121\Group8_FinalProj\main.cpp(103,23): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(90,1): message : see declaration of 'strcat'
+﻿  iomanagement.cpp
+  main.cpp
+  patient.cpp
+C:\Users\Russi\Desktop\College Stuff\cmpr121\Group8_FinalProj\patient.cpp(30,13): warning C4552: '>>': result of expression not used
+  Generating Code...
+  Group8_FinalProj.vcxproj -> C:\Users\Russi\Desktop\College Stuff\cmpr121\Group8_FinalProj\Debug\Group8_FinalProj.exe

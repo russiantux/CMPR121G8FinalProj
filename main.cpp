@@ -3,7 +3,7 @@ The UI is using a library called PDCurses(Public Domain Curses), and allows for 
 Basic rundown of PDCurses commands:
     BASICS/INIT/DESTRUCTION
     - PDCurses works mainly by modifying the console/program's memory, then being refreshed by the code to update the screen. It is very important to refresh() the memory, otherwise any
-      changes you make to the memory will not show up automaticlly. 
+      changes you make to the memory will not show up automaticlly.
     - To initilize PDCurses and load it into memory, we always start it with initsrc() at the beginning of the UI code
     - To destroy PDCurses and remove it from memory, at the end we always end it with endsrc();
 
@@ -36,7 +36,7 @@ void c_mainMenu(WINDOW*);
 void c_patModule(WINDOW*);
 void c_introScreen();
 
-char* passHash(char *);
+char* passHash(char*);
 
 int main()
 {
@@ -49,7 +49,7 @@ int main()
 
     //generate the main window
     WINDOW* mainWin = newwin(30, 120, 0, 0);
-   
+
     refresh();
     c_loginScreen(mainWin);
     getch();
@@ -64,7 +64,7 @@ int main()
     endwin();
 
     return 0;
-  }
+}
 
 //func to show intro msgs,warnings etc.
 void c_introScreen() {
@@ -91,21 +91,21 @@ void c_printLogo(WINDOW* menu) {
 
 //a function to draw the login screen
 void c_loginScreen(WINDOW* win) {
-    char usr[MAX_SIZE],pass[MAX_SIZE];
-    char* meme;
-    meme[1] = '1';
-    sizeof(meme);
+    char usr[MAX_SIZE], pass[MAX_SIZE];
+    //char* meme;
+   // meme[1] = '1';
+    //sizeof(meme);
     box(win, 0, 0);
     c_printLogo(win);
     //login box
     mvwprintw(win, 13, 50, "Login:");
-    wgetstr(win,usr);
-    mvwprintw(win, 13, 57,usr);
+    wgetstr(win, usr);
+    mvwprintw(win, 13, 57, usr);
     wrefresh(win);
     mvwprintw(win, 14, 47, "Password:");
     wgetstr(win, pass);
     //meme.push_back('\0');
-    mvwprintw(win, 14, 57, passHash(pass));
+    mvwprintw(win, 14, 57, pass);
     wrefresh(win);
     mvwprintw(win, 28, 2, "// Login-Screen Concept, utilizing a usrnme and pswrd, subject to change ofc");
     getch();
@@ -130,9 +130,9 @@ void c_mainMenu(WINDOW* win) {
             if (i == highlight) {
                 wattron(win, A_REVERSE);
             }
-                mvwprintw(win, i + 11, 75, m_options[i].c_str());
-                wattroff(win, A_REVERSE);
-            
+            mvwprintw(win, i + 11, 75, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
         }
         choice = wgetch(win);
 
@@ -164,10 +164,11 @@ void c_mainMenu(WINDOW* win) {
             break;
         }
     }
-    
+
     wrefresh(win);
 }
 
+/* buggy code, will fix later
 char* passHash(char* pass) {
     int l,i=0;
     char hash[50];
@@ -178,3 +179,4 @@ char* passHash(char* pass) {
     }
     return hash;
 }
+*/
