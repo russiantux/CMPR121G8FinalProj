@@ -15,6 +15,20 @@ void patient::addPatient(bPATIENT* p) {
 	p->p_dobMonth = p_dobMonth;
 	p->p_dobDay = p_dobDay;
 	p->p_dobYear = p_dobYear;
+	p->p_isMinor = p_isMinor;
+	p->p_Gender = p_Gender;
+	p->p_MaritalStat = p_MaritalStat;
+
+	p->p_PCP = p_PCP;
+	p->p_PCPnum = p_PCPnum;
+	p->p_refPhys = p_refPhys;
+	p->p_refPhysNum = p_refPhysNum;
+
+	p->a_hNum = a_hNum;
+	p->a_Address = a_Address;
+	p->a_City = a_City;
+	p->a_State - a_State;
+	p->a_Zip = a_Zip;
 
 
 	//enum's

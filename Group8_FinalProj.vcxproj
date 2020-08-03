@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -151,10 +151,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="iomanagement.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="patient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common_vars.h" />
+    <ClInclude Include="iomanagement.h" />
+    <ClInclude Include="patient.h" />
     <ClInclude Include="pdcurses\curses.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="patient_stuct_format.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
