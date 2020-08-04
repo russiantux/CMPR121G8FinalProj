@@ -8,3 +8,5 @@
 *.opendb
 .vs/Group8_FinalProj/v16/.suo
 Debug/
+*.pdb
+*.obj

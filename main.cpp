@@ -30,7 +30,7 @@ Basic rundown of PDCurses commands:
 
 //These functions are where most of the UI panels are, to avoid cluttering up int main()
 
-void c_printLogo(WINDOW*);
+void c_printLogo(WINDOW*,int);
 void c_loginScreen(WINDOW*);
 void c_mainMenu(WINDOW*);
 void c_patModule(WINDOW*);
@@ -42,7 +42,11 @@ void c_newPatientWin(WINDOW*);
 void c_viewPatientWin(WINDOW*);
 void c_patientLoading(WINDOW*);
 
-char* passHash(char*);
+void c_baseAppoinWin(WINDOW*);
+void c_newAppointWin(WINDOW*);
+void c_viewAppointWin(WINDOW*);
+void c_appointLoading(WINDOW*);
+
 
 int main()
 {
@@ -72,6 +76,33 @@ int main()
     return 0;
 }
 
+//a function to print the logo instead of copying it in every goddamn time. 0 for main logo, 1 for patient logo, 2 for appint logo
+void c_printLogo(WINDOW* menu,int choice) {
+    if (choice == 0) {
+        mvwprintw(menu, 1, 2, "    __  __    ____   _____           ____     ");
+        mvwprintw(menu, 2, 2, "   / / / /   /  _/  / ___/   ____ _ ( __ )    ");
+        mvwprintw(menu, 3, 2, "  / /_/ /    / /    \\__ \\   / __ `// __  |    ");
+        mvwprintw(menu, 4, 2, " / __  /_  _/ / _  ___/ /_ / /_/ // /_/ /     ");
+        mvwprintw(menu, 5, 2, "/_/ /_/(_)/___/(_)/____/(_)\\__, / \\____/      ");
+        mvwprintw(menu, 6, 2, "                          /____/              ");
+        mvwprintw(menu, 7, 18, "(hiz-gate)");
+        mvwprintw(menu, 8, 20, "Group 8");
+    }
+    else if(choice == 1) {
+        mvwprintw(menu, 1, 2, "  _____      _   _            _   ");
+        mvwprintw(menu, 2, 2, " |  __ \\    | | (_)          | |  ");
+        mvwprintw(menu, 3, 2, " | |__) |_ _| |_ _  ___ _ __ | |_ ");
+        mvwprintw(menu, 4, 2, " |  ___/ _` | __| |/ _ \\ '_ \\| __|");
+        mvwprintw(menu, 5, 2, " | |  | (_| | |_| |  __/ | | | |_ ");
+        mvwprintw(menu, 6, 2, " |_|   \\__,_|\\__|_|\\___|_| |_|\__|");
+        mvwprintw(menu, 7, 18, "H.I.S.g8");
+        
+    }
+    else if (choice == 2) {
+
+    }
+    
+};
 //func to show intro msgs,warnings etc.
 void c_introScreen() {
     move(13, 5);
@@ -82,27 +113,13 @@ void c_introScreen() {
     attroff(A_STANDOUT);
     refresh();
 }
-
-//a function to print the logo instead of copying it in every goddamn time
-void c_printLogo(WINDOW* menu) {
-    mvwprintw(menu, 1, 2, "    __  __    ____   _____           ____     ");
-    mvwprintw(menu, 2, 2, "   / / / /   /  _/  / ___/   ____ _ ( __ )    ");
-    mvwprintw(menu, 3, 2, "  / /_/ /    / /    \\__ \\   / __ `// __  |    ");
-    mvwprintw(menu, 4, 2, " / __  /_  _/ / _  ___/ /_ / /_/ // /_/ /     ");
-    mvwprintw(menu, 5, 2, "/_/ /_/(_)/___/(_)/____/(_)\\__, / \\____/      ");
-    mvwprintw(menu, 6, 2, "                          /____/              ");
-    mvwprintw(menu, 7, 18, "(hiz-gate)");
-    mvwprintw(menu, 8, 20, "Group 8");
-};
-
 //a function to draw the login screen
 void c_loginScreen(WINDOW* win) {
+    clear();
     char usr[MAX_SIZE], pass[MAX_SIZE];
-    //char* meme;
-   // meme[1] = '1';
-    //sizeof(meme);
+
     box(win, 0, 0);
-    c_printLogo(win);
+    c_printLogo(win,0);
     mvwprintw(win, 28, 2, "// Login-Screen , utilizing a usrnme and pswrd (accepts anything atm cause no time)");
     //login box
     mvwprintw(win, 13, 50, "Login:");
@@ -116,13 +133,14 @@ void c_loginScreen(WINDOW* win) {
     mvwprintw(win, 16, 50, "Press any key to login");
     wrefresh(win);
 }
-
 //a function to draw the main menu and selection process
 //TODO: bind to other windows/modules of the program
 void c_mainMenu(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
     keypad(win, true);
     box(win, 0, 0);
-    c_printLogo(win);
+    c_printLogo(win, 0);
     mvwprintw(win, 9, 3, "Logged in as: Mary Jane | Reception Desk");
     mvwprintw(win, 9, 75, "Main Menu");
 
@@ -164,12 +182,82 @@ void c_mainMenu(WINDOW* win) {
         };
 
         if (choice == 10) {
-            clear();
+            switch (highlight) {
+            case 0:
+                c_basePatientWin(win);
+                break;
+            case 1:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+                    
+            }
+            
             break;
         }
     }
 
     wrefresh(win);
+}
+
+void c_basePatientWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+    c_printLogo(win, 1);
+
+    int choice, highlight = 0;
+    std::string m_options[3] = { "View a patient info","Add a new patient","Main Menu"};
+    mvwprintw(win, 28, 2, "// base patient module UI, showing the 2 options:view or add a new patient info");
+    while (1) {
+        for (int i = 0; i < 3; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 11, 75, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 3) {
+                highlight = 2;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+                
+                break;
+            case 1:
+                break;
+            case 3:
+                c_mainMenu(win);
+                break;
+
+            }
+            clear();
+            break;
+        }
+    }
+    wrefresh(win);
+    
 }
 
 
