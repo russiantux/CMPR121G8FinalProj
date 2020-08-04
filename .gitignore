@@ -6,3 +6,5 @@
 *.db-shm
 *.db-wal
 *.opendb
+.vs/Group8_FinalProj/v16/.suo
+Debug/

@@ -36,6 +36,12 @@ void c_mainMenu(WINDOW*);
 void c_patModule(WINDOW*);
 void c_introScreen();
 
+//patient windows
+void c_basePatientWin(WINDOW*);
+void c_newPatientWin(WINDOW*);
+void c_viewPatientWin(WINDOW*);
+void c_patientLoading(WINDOW*);
+
 char* passHash(char*);
 
 int main()
@@ -97,6 +103,7 @@ void c_loginScreen(WINDOW* win) {
     //sizeof(meme);
     box(win, 0, 0);
     c_printLogo(win);
+    mvwprintw(win, 28, 2, "// Login-Screen , utilizing a usrnme and pswrd (accepts anything atm cause no time)");
     //login box
     mvwprintw(win, 13, 50, "Login:");
     wgetstr(win, usr);
@@ -106,10 +113,7 @@ void c_loginScreen(WINDOW* win) {
     wgetstr(win, pass);
     //meme.push_back('\0');
     mvwprintw(win, 14, 57, pass);
-    wrefresh(win);
-    mvwprintw(win, 28, 2, "// Login-Screen Concept, utilizing a usrnme and pswrd, subject to change ofc");
-    getch();
-
+    mvwprintw(win, 16, 50, "Press any key to login");
     wrefresh(win);
 }
 
@@ -168,15 +172,7 @@ void c_mainMenu(WINDOW* win) {
     wrefresh(win);
 }
 
-/* buggy code, will fix later
-char* passHash(char* pass) {
-    int l,i=0;
-    char hash[50];
 
-    while (pass[i] != '\0') {
-        hash[i] = '*';
-        i++;
-    }
-    return hash;
-}
-*/
+
+
+

@@ -1,3 +1,2 @@
 ﻿  main.cpp
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Group8_FinalProj.vcxproj -> C:\Users\Russi\Desktop\College Stuff\cmpr121\CMPR121G8FinalProj\Debug\Group8_FinalProj.exe
