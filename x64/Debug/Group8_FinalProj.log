@@ -1,0 +1,24 @@
+﻿main.obj : error LNK2019: unresolved external symbol attroff referenced in function "void __cdecl c_introScreen(void)" (?c_introScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol attron referenced in function "void __cdecl c_introScreen(void)" (?c_introScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol box referenced in function "void __cdecl c_loginScreen(struct _win *)" (?c_loginScreen@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol clear referenced in function "void __cdecl c_mainMenu(struct _win *)" (?c_mainMenu@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol endwin referenced in function main
+main.obj : error LNK2019: unresolved external symbol initscr_x64 referenced in function main
+main.obj : error LNK2019: unresolved external symbol keypad referenced in function "void __cdecl c_mainMenu(struct _win *)" (?c_mainMenu@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol move referenced in function "void __cdecl c_introScreen(void)" (?c_introScreen@@YAXXZ)
+    Hint on symbols that are defined and could potentially match:
+      "public: static char * __cdecl std::_Narrow_char_traits<char,int>::move(char * const,char const * const,unsigned __int64)" (?move@?$_Narrow_char_traits@DH@std@@SAPEADQEADQEBD_K@Z)
+main.obj : error LNK2019: unresolved external symbol mvwprintw referenced in function "void __cdecl c_loginScreen(struct _win *)" (?c_loginScreen@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol newwin referenced in function main
+main.obj : error LNK2019: unresolved external symbol noecho referenced in function main
+main.obj : error LNK2019: unresolved external symbol printw referenced in function "void __cdecl c_introScreen(void)" (?c_introScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol refresh referenced in function "void __cdecl c_introScreen(void)" (?c_introScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol wattroff referenced in function "void __cdecl c_mainMenu(struct _win *)" (?c_mainMenu@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol wattron referenced in function "void __cdecl c_mainMenu(struct _win *)" (?c_mainMenu@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol wclear referenced in function main
+main.obj : error LNK2019: unresolved external symbol wgetch referenced in function "void __cdecl c_loginScreen(struct _win *)" (?c_loginScreen@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol wgetstr referenced in function "void __cdecl c_loginScreen(struct _win *)" (?c_loginScreen@@YAXPEAU_win@@@Z)
+main.obj : error LNK2019: unresolved external symbol wrefresh referenced in function "void __cdecl c_loginScreen(struct _win *)" (?c_loginScreen@@YAXPEAU_win@@@Z)
+main.obj : error LNK2001: unresolved external symbol stdscr
+C:\Users\Russi\Desktop\College Stuff\cmpr121\CMPR121G8FinalProj\pdcurses\wincon\pdcurses.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\Russi\Desktop\College Stuff\cmpr121\CMPR121G8FinalProj\x64\Debug\Group8_FinalProj.exe : fatal error LNK1120: 20 unresolved externals

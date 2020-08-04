@@ -1,0 +1,8 @@
+
+*.tlog
+*.obj
+*.tlog
+*.db
+*.db-shm
+*.db-wal
+*.opendb

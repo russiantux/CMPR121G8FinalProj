@@ -1,2 +1,4 @@
 C:\Users\Russi\Desktop\College Stuff\cmpr121\Group8_FinalProj\Debug\Group8_FinalProj.exe
 C:\Users\Russi\Desktop\College Stuff\cmpr121\Group8_FinalProj\Debug\Group8_FinalProj.pdb
+C:\Users\Russi\Desktop\College Stuff\cmpr121\CMPR121G8FinalProj\Debug\Group8_FinalProj.exe
+C:\Users\Russi\Desktop\College Stuff\cmpr121\CMPR121G8FinalProj\Debug\Group8_FinalProj.pdb

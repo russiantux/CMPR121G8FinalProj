@@ -24,6 +24,12 @@
     <ClInclude Include="common_vars.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="iomanagement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,10 +38,18 @@
     <ClCompile Include="patient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="iomanagement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="patient_stuct_format.md">
       <Filter>Source Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Group8_FinalProj.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

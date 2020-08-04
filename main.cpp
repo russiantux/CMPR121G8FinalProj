@@ -21,12 +21,12 @@ Basic rundown of PDCurses commands:
     - With getch(), you can assign it to a int varible and go ham with that (ie. int c = getch();)
     - For getting input from a specific window, you can use wgetch([pointer to window obj]). You can also assign it to a varible as well.
 */
-
+//#pragma comment(lib,"pdcurses/wincon/pdcurses.lib")
 
 #include <iostream>
 #include "common_vars.h"
 //the pdcurses header
-#include <curses.h>
+#include "pdcurses/curses.h"
 
 //These functions are where most of the UI panels are, to avoid cluttering up int main()
 
