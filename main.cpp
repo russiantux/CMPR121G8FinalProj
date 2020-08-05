@@ -62,12 +62,12 @@ int main()
 
     refresh();
     c_loginScreen(mainWin);
-    getch();
+    
     wclear(mainWin);
 
     //main menu 
     c_mainMenu(mainWin);
-    getch();
+   
 
 
     //end pdcurses
@@ -99,6 +99,12 @@ void c_printLogo(WINDOW* menu,int choice) {
         
     }
     else if (choice == 2) {
+        mvwprintw(menu, 1, 2, "    _                  _     _                 _      ");
+        mvwprintw(menu, 2, 2, "   /_\\  _ __ _ __  ___(_)_ _| |_ _ __  ___ _ _| |_ ___");
+        mvwprintw(menu, 3, 2, "  / _ \\| '_ \\ '_ \\/ _ \\ | ' \\  _| '  \\/ -_) ' \\  _(_-<");
+        mvwprintw(menu, 4, 2, " /_/ \\_\\ .__/ .__/\\___/_|_||_\\__|_|_|_\\___|_||_\\__/__/");
+        mvwprintw(menu, 5, 2, "       |_|  |_|                                       ");
+        mvwprintw(menu, 6, 18, "H.I.S.g8");
 
     }
     
@@ -145,10 +151,10 @@ void c_mainMenu(WINDOW* win) {
     mvwprintw(win, 9, 75, "Main Menu");
 
     int choice, highlight = 0;
-    std::string m_options[5] = { "Patient Management","Appointment Management"," ","Settings","Sign Out/Exit" };
+    std::string m_options[4] = { "Patient Management","Appointment Management"," ","Sign Out/Exit" };
     mvwprintw(win, 28, 2, "// Main Menu Concept, showing the 2 modules plus signout/exit and maybe a settings page");
     while (1) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             if (i == highlight) {
                 wattron(win, A_REVERSE);
             }
@@ -173,8 +179,8 @@ void c_mainMenu(WINDOW* win) {
             if (highlight == 2) {
                 highlight = 3;
             };
-            if (highlight == 5) {
-                highlight = 4;
+            if (highlight == 4) {
+                highlight = 3;
             };
             break;
         default:
@@ -187,6 +193,7 @@ void c_mainMenu(WINDOW* win) {
                 c_basePatientWin(win);
                 break;
             case 1:
+                c_baseAppoinWin(win);
                 break;
             case 3:
                 break;
@@ -247,14 +254,15 @@ void c_basePatientWin(WINDOW* win) {
                 break;
             case 1:
                 break;
-            case 3:
+            case 2:
                 c_mainMenu(win);
                 break;
 
             }
-            clear();
-            break;
+            //clear();
+           break;
         }
+        
     }
     wrefresh(win);
     
@@ -262,5 +270,62 @@ void c_basePatientWin(WINDOW* win) {
 
 
 
+void c_baseAppoinWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+    c_printLogo(win, 2);
 
+    int choice, highlight = 0;
+    std::string m_options[3] = { "View appointments","Add a new appointment","Main Menu" };
+    mvwprintw(win, 28, 2, "// base appointment module UI, showing the 2 options:view or add a new appointment");
+    while (1) {
+        for (int i = 0; i < 3; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 11, 75, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 3) {
+                highlight = 2;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+
+                break;
+            case 1:
+                break;
+            case 2:
+                c_mainMenu(win);
+                break;
+
+            }
+            //clear();
+            break;
+        }
+
+    }
+    wrefresh(win);
+
+}
 
