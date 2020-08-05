@@ -53,7 +53,7 @@ int main()
 		cout << "press Y to add another patient or any other button to exit" << endl << endl;
 		cin >> userCont;
 
-		if (userCont == 'y' | userCont == 'Y')
+		if (userCont == 'Y' | userCont == 'y')
 		{
 			//continue the loop
 			bool end = false;
