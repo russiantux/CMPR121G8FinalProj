@@ -1,37 +1,45 @@
+#include <string>
+#include <iomanip>
+#include <fstream>
+#include <iostream>
 #include "patient.h"
 
+using namespace std;
 
-//adding a new patient, takes a struct* of all the data
-void patient::addPatient(bPATIENT* p) {
-	//see patient_struct_format.md to see the format in which this takes information
-	//god i hate the way this is, but i don't have enough time to make it nicer. too bad!
+int main()
+{
+	Patient patientInfo;
+
+	string firstName;
+	string lastName;
+	string provider;
+	int phoneNumber;
+	int age;
+
+	fstream saveFile;
+	saveFile.open("database.txt", ios::out);
 	
-	//non-enum
-	p->p_lName = p_lName;
-	p->p_fName = p_fName;
-	p->p_mInit = p_mInit;
-	p->p_Age = p_Age;
+	//write user info to file
+	cout << "please enter the following information" << endl;
 
-	p->p_dobMonth = p_dobMonth;
-	p->p_dobDay = p_dobDay;
-	p->p_dobYear = p_dobYear;
-	p->p_isMinor = p_isMinor;
-	p->p_Gender = p_Gender;
-	p->p_MaritalStat = p_MaritalStat;
+	cout << "please enter first name" <<endl;
+	cin >> firstName;
 
-	p->p_PCP = p_PCP;
-	p->p_PCPnum = p_PCPnum;
-	p->p_refPhys = p_refPhys;
-	p->p_refPhysNum = p_refPhysNum;
+	cout << "please enter last name" << endl;
+	cin >> lastName;
+	 
+	cout << "please enter phone number" << endl;
+	cin >> phoneNumber;
 
-	p->a_hNum = a_hNum;
-	p->a_Address = a_Address;
-	p->a_City = a_City;
-	p->a_State - a_State;
-	p->a_Zip = a_Zip;
+	cout << "please enter patient age" << endl;
+	cin >> age;
 
+	cout << "please enter patients insurance provider" << endl;
+	cin >> provider;
 
-	//enum's
+	patientInfo.addPatient(firstName, lastName, phoneNumber, age, provider);
 	
+	saveFile << firstName << lastName << ": " << phoneNumber << age << provider << endl;
 
+	return 0;
 };
