@@ -39,19 +39,23 @@ void c_introScreen();
 //patient windows
 void c_basePatientWin(WINDOW*);
 void c_newPatientWin(WINDOW*);
+void c_viewmPatientWin(WINDOW*);
 void c_viewPatientWin(WINDOW*);
+void c_viewPatientConceptWin(WINDOW*);
+void c_viewPatientConceptNotesWin(WINDOW*);
 void c_patientLoading(WINDOW*);
 
 void c_baseAppoinWin(WINDOW*);
 void c_newAppointWin(WINDOW*);
 void c_viewAppointWin(WINDOW*);
+void c_viewmAppointWin(WINDOW*);
 void c_appointLoading(WINDOW*);
 
 
 int main()
 {
     initscr();
-    noecho();
+   // noecho();
     clear();
     c_introScreen();
     getch();
@@ -59,6 +63,7 @@ int main()
 
     //generate the main window
     WINDOW* mainWin = newwin(30, 120, 0, 0);
+
 
     refresh();
     c_loginScreen(mainWin);
@@ -208,7 +213,7 @@ void c_mainMenu(WINDOW* win) {
 
     wrefresh(win);
 }
-
+//base patient module win
 void c_basePatientWin(WINDOW* win) {
     wclear(win);
     wrefresh(win);
@@ -250,7 +255,7 @@ void c_basePatientWin(WINDOW* win) {
         if (choice == 10) {
             switch (highlight) {
             case 0:
-                
+                c_viewmPatientWin(win);
                 break;
             case 1:
                 break;
@@ -267,9 +272,6 @@ void c_basePatientWin(WINDOW* win) {
     wrefresh(win);
     
 }
-
-
-
 void c_baseAppoinWin(WINDOW* win) {
     wclear(win);
     wrefresh(win);
@@ -329,3 +331,228 @@ void c_baseAppoinWin(WINDOW* win) {
 
 }
 
+//sub viewing of patient module win
+void c_viewmPatientWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+    c_printLogo(win, 1);
+
+    int choice, highlight = 0;
+    std::string m_options[3] = { "concept","View a patient","Back" };
+    mvwprintw(win, 28, 2, "// base patient module UI, showing the 2 options:view or add a new patient info");
+    while (1) {
+        for (int i = 0; i < 3; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 11, 75, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 3) {
+                highlight = 2;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+                c_viewPatientConceptWin(win);
+                break;
+            case 1:
+                break;
+            case 2:
+                c_basePatientWin(win);
+                break;
+
+            }
+            //clear();
+            break;
+        }
+
+    }
+    wrefresh(win);
+}
+
+void c_viewPatientConceptWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 1, 1, "Patient file for John Doe:");
+    wattroff(win, A_REVERSE);
+    //row 1
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 3, 4, "General Info");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 4, 2, "Name(Last,First): John Doe");
+    mvwprintw(win, 4, 30, "Age: 30");
+    mvwprintw(win, 4, 39, "DoB: 02/29/1980");
+    mvwprintw(win, 4, 57, "Gender: MALE");
+    mvwprintw(win,4, 72, "Marital Status: MARRIED");
+    //row2
+    mvwprintw(win, 5, 2, "Address: 123 Test St., Test CA, 123456");
+    mvwprintw(win, 5, 42, "Perfered Contact Method: WORK PHONE");
+    //row3
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 7, 4, "Patient Contact Info");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 8, 2, "Phone number (home): (123) 456-7890");
+    mvwprintw(win, 8, 40, "Phone number (work): (098) 765-4321");
+    mvwprintw(win, 8, 78, "Email: jdoe1980@email.com");
+    //row4
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 10, 4, "Insurence/PCP");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 11, 2, "Insurence Co. : Health Insurence Corp.");
+    mvwprintw(win, 11, 42, "Insurence Phone: (123) 123-4567");
+    mvwprintw(win, 11, 76, "Insurence #: 123-45-67889");
+    mvwprintw(win, 12, 2, "Insurence Billing Address: 123456 Health Corp Way, Health CA, 198765");
+
+    mvwprintw(win, 13, 2, "Refering Physician: Dr.Doc McDoctor Md.");
+    mvwprintw(win, 13, 44, "Primary Care Physician: Dr.Doc McDoc II Md.");
+    mvwprintw(win, 14, 2, "R.P. #: (123) 321-3241");
+    mvwprintw(win, 14, 27, "P.C.P. #: (123) 829-9332");
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 16, 4, "EMERGANCY CONTACT");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 17, 2, "E.C. Name: Stacy Doe");
+    mvwprintw(win, 17, 24, "E.C. #: (123) 123-1232");
+    mvwprintw(win, 17, 49, "E.C. Relationship: SPOUSE");
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 20, 2, "Upcoming Appointments");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 21, 2, "- CHECK-UP/FOLLOW UP | AUG 18 2020 @ 12:00pm");
+
+    int choice, highlight = 0;
+    std::string m_options[2] = { "View Notes","Back" };
+    while (1) {
+        for (int i = 0; i < 2; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 20, 100, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 2) {
+                highlight = 1;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+                c_viewPatientConceptNotesWin(win);
+                break;
+            case 1:
+                c_viewmPatientWin(win);
+                
+                break;
+            }
+            //clear();
+            break;
+        }
+
+    }
+ 
+    wrefresh(win);
+    
+
+
+}
+
+void c_viewPatientConceptNotesWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 1, 1, "Patient Notes for John Doe:");
+    wattroff(win, A_REVERSE);
+
+    mvwprintw(win, 3, 2, "07/28/2020 - PATIENT HAD CHECK-UP,COMPLAINED ABOUT HEADACHES, PERSCRIBED [medication], MADE FOLLOW UP APPT.");
+    mvwprintw(win, 5, 2, "03/13/2020 - PATIENT HAD CHECK-UP, VITALS AND HEALTH ARE NORMAL. NEW APPT MADE FOR 07/28/2020");
+    mvwprintw(win, 7, 2, "12/10/2019 - PATIENT HAD CHECH-UP, VITALS AND HEALTH ARE NORMAL. NEW APPT MADE FOR 03/13/2020");
+
+    int choice, highlight = 0;
+    std::string m_options[2] = { "View Patient File","Back" };
+    while (1) {
+        for (int i = 0; i < 2; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 20, 100, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 2) {
+                highlight = 1;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+                c_viewPatientConceptWin(win);
+                break;
+            case 1:
+                c_viewmPatientWin(win);
+                break;
+            }
+            //clear();
+            break;
+        }
+
+    }
+    wrefresh(win);
+}
