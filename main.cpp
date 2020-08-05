@@ -50,6 +50,7 @@ void c_newAppointWin(WINDOW*);
 void c_viewAppointWin(WINDOW*);
 void c_viewmAppointWin(WINDOW*);
 void c_appointLoading(WINDOW*);
+void c_viewAppointConceptWin(WINDOW*);
 
 
 int main()
@@ -272,64 +273,7 @@ void c_basePatientWin(WINDOW* win) {
     wrefresh(win);
     
 }
-void c_baseAppoinWin(WINDOW* win) {
-    wclear(win);
-    wrefresh(win);
-    keypad(win, true);
-    box(win, 0, 0);
-    c_printLogo(win, 2);
 
-    int choice, highlight = 0;
-    std::string m_options[3] = { "View appointments","Add a new appointment","Main Menu" };
-    mvwprintw(win, 28, 2, "// base appointment module UI, showing the 2 options:view or add a new appointment");
-    while (1) {
-        for (int i = 0; i < 3; i++) {
-            if (i == highlight) {
-                wattron(win, A_REVERSE);
-            }
-            mvwprintw(win, i + 11, 75, m_options[i].c_str());
-            wattroff(win, A_REVERSE);
-
-        }
-        choice = wgetch(win);
-
-        switch (choice) {
-        case KEY_UP:
-            highlight--;
-            if (highlight == -1) {
-                highlight = 0;
-            };
-            break;
-        case KEY_DOWN:
-            highlight++;
-            if (highlight == 3) {
-                highlight = 2;
-            };
-            break;
-        default:
-            break;
-        };
-
-        if (choice == 10) {
-            switch (highlight) {
-            case 0:
-
-                break;
-            case 1:
-                break;
-            case 2:
-                c_mainMenu(win);
-                break;
-
-            }
-            //clear();
-            break;
-        }
-
-    }
-    wrefresh(win);
-
-}
 
 //sub viewing of patient module win
 void c_viewmPatientWin(WINDOW* win) {
@@ -554,5 +498,284 @@ void c_viewPatientConceptNotesWin(WINDOW* win) {
         }
 
     }
+    wrefresh(win);
+}
+
+
+
+void c_baseAppoinWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+    c_printLogo(win, 2);
+
+    int choice, highlight = 0;
+    std::string m_options[3] = { "View appointments","Add a new appointment","Main Menu" };
+    mvwprintw(win, 28, 2, "// base appointment module UI, showing the 2 options:view or add a new appointment");
+    while (1) {
+        for (int i = 0; i < 3; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 11, 75, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 3) {
+                highlight = 2;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+                c_viewmAppointWin(win);
+                break;
+            case 1:
+                break;
+            case 2:
+                c_mainMenu(win);
+                break;
+
+            }
+            //clear();
+            break;
+        }
+
+    }
+    wrefresh(win);
+
+}
+
+void c_viewmAppointWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+    c_printLogo(win, 2);
+
+    int choice, highlight = 0;
+    std::string m_options[3] = { "concept","View Appointments","Back" };
+    mvwprintw(win, 28, 2, "// base viewing appointment module UI");
+    while (1) {
+        for (int i = 0; i < 3; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 11, 75, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 3) {
+                highlight = 2;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+                c_viewAppointConceptWin(win);
+                break;
+            case 1:
+                c_viewAppointConceptWin(win);
+                break;
+            case 2:
+                c_baseAppoinWin(win);
+                break;
+
+            }
+            //clear();
+            break;
+        }
+
+    }
+    wrefresh(win);
+}
+
+void c_viewAppointConceptWin(WINDOW* win) {
+    wclear(win);
+    wrefresh(win);
+    keypad(win, true);
+    box(win, 0, 0);
+    c_printLogo(win, 2);
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 1, 1, "Appointments for August");
+    wattroff(win, A_REVERSE);
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 2, 4, "Week 1");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 3, 2, "Monday:");
+    mvwprintw(win, 4, 3, "12:00pm - [name]");
+    mvwprintw(win, 5, 3, "12:30pm - [name]");
+    mvwprintw(win, 6, 3, "2:45pm - [name]");
+    mvwprintw(win, 7, 3, "4:00pm - [name]");
+    mvwprintw(win, 8, 3, "4:30pm - [name]");
+    
+    mvwprintw(win, 3, 21, "Tuesday:");
+    mvwprintw(win, 4, 22, "12:00pm - [name]");
+    mvwprintw(win, 5, 22, "12:30pm - [name]");
+    mvwprintw(win, 6, 22, "2:45pm - [name]");
+    mvwprintw(win, 7, 22, "4:00pm - [name]");
+    mvwprintw(win, 8, 22, "4:30pm - [name]");
+
+    mvwprintw(win, 3, 52, "Thursday:");
+    mvwprintw(win, 4, 51, "12:00pm - [name]");
+    mvwprintw(win, 5, 51, "12:30pm - [name]");
+    mvwprintw(win, 6, 51, "2:45pm - [name]");
+    mvwprintw(win, 7, 51, "4:00pm - [name]");
+    mvwprintw(win, 8, 51, "4:30pm - [name]");
+
+    mvwprintw(win, 3, 71, "Friday:");
+    mvwprintw(win, 4, 70, "12:00pm - [name]");
+    mvwprintw(win, 5, 70, "12:30pm - [name]");
+    mvwprintw(win, 6, 70, "2:45pm - [name]");
+    mvwprintw(win, 7, 70, "4:00pm - [name]");
+    mvwprintw(win, 8, 70, "4:30pm - [name]");
+    
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 10, 4, "Week 2");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 11, 2, "Monday:");
+    mvwprintw(win, 12, 3, "12:00pm - [name]");
+    mvwprintw(win, 13, 3, "12:30pm - [name]");
+    mvwprintw(win, 14, 3, "2:45pm - [name]");
+    mvwprintw(win, 15, 3, "4:00pm - [name]");
+    mvwprintw(win, 16, 3, "4:30pm - [name]");
+
+    mvwprintw(win, 10, 21, "Tuesday:");
+    mvwprintw(win, 12, 3, "12:00pm - [name]");
+    mvwprintw(win, 13, 3, "12:30pm - [name]");
+    mvwprintw(win, 14, 3, "2:45pm - [name]");
+    mvwprintw(win, 15, 3, "4:00pm - [name]");
+    mvwprintw(win, 16, 3, "4:30pm - [name]");
+
+
+    mvwprintw(win, 10, 52, "Thursday:");
+    mvwprintw(win, 12, 3, "12:00pm - [name]");
+    mvwprintw(win, 13, 3, "12:30pm - [name]");
+    mvwprintw(win, 14, 3, "2:45pm - [name]");
+    mvwprintw(win, 15, 3, "4:00pm - [name]");
+    mvwprintw(win, 16, 3, "4:30pm - [name]");
+
+
+    mvwprintw(win, 10, 71, "Friday:");
+    mvwprintw(win, 12, 3, "12:00pm - [name]");
+    mvwprintw(win, 13, 3, "12:30pm - [name]");
+    mvwprintw(win, 14, 3, "2:45pm - [name]");
+    mvwprintw(win, 15, 3, "4:00pm - [name]");
+    mvwprintw(win, 16, 3, "4:30pm - [name]");
+
+
+    wattron(win, A_REVERSE);
+    mvwprintw(win, 18, 4, "Week 3");
+    wattroff(win, A_REVERSE);
+    mvwprintw(win, 19, 2, "Monday:");
+    mvwprintw(win, 20, 3, "12:00pm - [name]");
+    mvwprintw(win, 21, 3, "12:30pm - [name]");
+    mvwprintw(win, 22, 3, "2:45pm - [name]");
+    mvwprintw(win, 23, 3, "4:00pm - [name]");
+    mvwprintw(win, 24, 3, "4:30pm - [name]");
+
+    mvwprintw(win, 10, 21, "Tuesday:");
+    mvwprintw(win, 20, 3, "12:00pm - [name]");
+    mvwprintw(win, 21, 3, "12:30pm - [name]");
+    mvwprintw(win, 22, 3, "2:45pm - [name]");
+    mvwprintw(win, 23, 3, "4:00pm - [name]");
+    mvwprintw(win, 24, 3, "4:30pm - [name]");
+
+
+    mvwprintw(win, 10, 52, "Thursday:");
+    mvwprintw(win, 20, 3, "12:00pm - [name]");
+    mvwprintw(win, 21, 3, "12:30pm - [name]");
+    mvwprintw(win, 22, 3, "2:45pm - [name]");
+    mvwprintw(win, 23, 3, "4:00pm - [name]");
+    mvwprintw(win, 24, 3, "4:30pm - [name]");
+
+
+    mvwprintw(win, 10, 71, "Friday:");
+    mvwprintw(win, 20, 3, "12:00pm - [name]");
+    mvwprintw(win, 21, 3, "12:30pm - [name]");
+    mvwprintw(win, 22, 3, "2:45pm - [name]");
+    mvwprintw(win, 23, 3, "4:00pm - [name]");
+    mvwprintw(win, 24, 3, "4:30pm - [name]");
+
+    int choice, highlight = 0;
+    std::string m_options[2] = { "View Week 3/4","Back" };
+    while (1) {
+        for (int i = 0; i < 2; i++) {
+            if (i == highlight) {
+                wattron(win, A_REVERSE);
+            }
+            mvwprintw(win, i + 20, 100, m_options[i].c_str());
+            wattroff(win, A_REVERSE);
+
+        }
+        choice = wgetch(win);
+
+        switch (choice) {
+        case KEY_UP:
+            highlight--;
+            if (highlight == -1) {
+                highlight = 0;
+            };
+            break;
+        case KEY_DOWN:
+            highlight++;
+            if (highlight == 2) {
+                highlight = 1;
+            };
+            break;
+        default:
+            break;
+        };
+
+        if (choice == 10) {
+            switch (highlight) {
+            case 0:
+                c_viewmAppointWin(win);
+                break;
+            case 1:
+                c_viewmAppointWin(win);
+
+                break;
+            }
+            //clear();
+            break;
+        }
+
+    }
+
     wrefresh(win);
 }
