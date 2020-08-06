@@ -160,6 +160,7 @@
     <ClCompile Include="iomanagement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="patient.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common_vars.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="patient.h" />
     <ClInclude Include="pdcurses\curses.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="patient_stuct_format.md" />
